@@ -9,6 +9,7 @@
         div#imgs{width: 320px;background: #ff99f9;border: 1px solid #999;}
         div#imgs>img.images{width: 90px;height: 90px;border-radius: 50%;position: absolute;top: 68px;left: 83px;}
         div#imgs>img{display: block;width: 320px;height: 320px;}
+        #numB,#numG,#numR{width: 60px;height: 32px;}
     </style>
 </head>
 <body>
@@ -16,30 +17,38 @@
         <img src="./demo.png" alt="请联系客服" />
         <img src="./touxiang.jpg" alt="" class="images"/>
     </div>
-    <input type="color" name="color" id="color" onchange="rangeColor()" value="#ff99f9"/>颜色：<span id="colorText">#ff99f9</span><br>
-    <label for="rangeR">R（红）：</label><input oninput="rangeColors()"  value="255" type="range" name="rangeR" id="rangeR" max="255"/><br>
-    <label for="rangeG">G（绿）：</label><input oninput="rangeColors()"  value="153"  type="range" name="rangeG" id="rangeG" max="255"/><br>
-    <label for="rangeB">B（蓝）：</label><input oninput="rangeColors()"  value="249"  type="range" name="rangeB" id="rangeB" max="255"/><br>
-
+    <input type="color" name="color" id="color" onchange="rangeColor()" value="#ff99f9"/>
+    颜色：<span id="colorText">#ff99f9</span><br>
+    <label for="rangeR">R（红）：</label>
+    <input oninput="rangeRGB()" value="255" type="range" name="rangeR" id="rangeR" max="255"/>
+    <input type="number" oninput="rangeNumber()" name="numR" id="numR" value="255" max="255" min="0"><br>
+    <label for="rangeG">G（绿）：</label>
+    <input oninput="rangeRGB()" value="153" type="range" name="rangeG" id="rangeG" max="255"/>
+    <input type="number" oninput="rangeNumber()" name="numG" id="numG" value="153" max="255" min="0"><br>
+    <label for="rangeB">B（蓝）：</label>
+    <input oninput="rangeRGB()" value="249" type="range" name="rangeB" id="rangeB" max="255"/>
+    <input type="number" oninput="rangeNumber()" name="numB" id="numB" value="249" max="255" min="0"><br>
     <script>
         let image = document.getElementById('imgs');
         let color = document.getElementById('color');
         let rangeR = document.getElementById('rangeR');
         let rangeG = document.getElementById('rangeG');
         let rangeB = document.getElementById('rangeB');
+        let numR = document.getElementById('numR');
+        let numG = document.getElementById('numG');
+        let numB = document.getElementById('numB');
         let colorText = document.getElementById('colorText')
-        function rangeColors(){
-            let rgb = 'rgb('+rangeR.value+','+rangeG.value+','+rangeB.value+')';
+        function rangeColors(rgb) {
             let re = rgb.match(/[0-9]{0,3}/g);//利用正则表达式去掉多余的部分，将rgb中的数字提取
-            let bgColor = "#"; let hex = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
+            let bgColor = "#"; let num= ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
             for (let i = 0; i < re.length; i++) {
                 let r = null, c = re[i], l = c;
                 let sixteen = [];
-                while (c > 16){
+                while (c >= 16){
                     r = c % 16;
                     c = (c / 16) >> 0;
-                    sixteen.push(hex[r]);
-                } sixteen.push(hex[c]);
+                    sixteen.push(num[r]);
+                } sixteen.push(num[c]);
                 if(l < 16&&l != ""){
                     sixteen.push(0)
                 }
@@ -49,12 +58,27 @@
             colorText.innerHTML = bgColor;
             image.style.backgroundColor = rgb;
         }
+        function rangeRGB(){
+            let rgb = 'rgb('+rangeR.value+','+rangeG.value+','+rangeB.value+')';
+            numR.value = rangeR.value;
+            numG.value = rangeG.value;
+            numB.value = rangeB.value;
+            rangeColors(rgb);
+        }
+        function rangeNumber() {
+            let rgb = 'rgb('+numR.value+','+numG.value+','+numB.value+')';
+            rangeR.value = numR.value;
+            rangeG.value = numG.value;
+            rangeB.value = numB.value;
+            rangeColors(rgb);
+        }
         function rangeColor(){
             image.style.backgroundColor = color.value;
             let colorR = parseInt('0x' + color.value.slice(1, 3));
             let colorG = parseInt('0x' + color.value.slice(3, 5));
             let colorB = parseInt('0x' + color.value.slice(5, 7));
-            rangeR.value = colorR;rangeG.value = colorG;rangeB.value = colorB;  
+            rangeR.value = colorR;rangeG.value = colorG;rangeB.value = colorB;
+            numR.value = colorR;numG.value = colorG;numB.value = colorB;
             colorText.innerHTML = color.value;
         }
     </script>
