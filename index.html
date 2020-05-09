@@ -7,7 +7,7 @@
     <style>
         *{margin: 0;padding: 0;}
         div#imgs{width: 320px;background: #ff99f9;border: 1px solid #999;}
-        div#imgs>img.images{width: 90px;height: 90px;border-radius: 50%;position: absolute;top: 68px;left: 83px;}
+        div#imgs>img#images{width: 90px;height: 90px;border-radius: 50%;position: absolute;top: 68px;left: 83px;}
         div#imgs>img{display: block;width: 320px;height: 320px;}
         #numB,#numG,#numR{width: 60px;height: 32px;}
     </style>
@@ -15,8 +15,9 @@
 <body>
     <div id="imgs">
         <img src="./demo.png" alt="请联系客服" />
-        <img src="./touxiang.jpg" alt="" class="images"/>
+        <img src="./touxiang0.jpg" alt="" id="images"/>
     </div>
+    <p onclick="changTouXiang()">更改头像</p>
     <input type="color" name="color" id="color" onchange="rangeColor()" value="#ff99f9"/>
     颜色：<span id="colorText">#ff99f9</span><br>
     <label for="rangeR">R（红）：</label>
@@ -30,6 +31,7 @@
     <input type="number" oninput="rangeNumber()" name="numB" id="numB" value="249" max="255" min="0"><br>
     <script>
         let image = document.getElementById('imgs');
+        let images = document.getElementById('images');
         let color = document.getElementById('color');
         let rangeR = document.getElementById('rangeR');
         let rangeG = document.getElementById('rangeG');
@@ -37,7 +39,14 @@
         let numR = document.getElementById('numR');
         let numG = document.getElementById('numG');
         let numB = document.getElementById('numB');
-        let colorText = document.getElementById('colorText')
+        let colorText = document.getElementById('colorText');
+        let total = 2;
+        let next = 1;
+        function changTouXiang(){
+            images.src = 'touxiang'+next+'.jpg'
+            next ++;
+            if (next >= total){next = 0}
+        }
         function rangeColors(rgb) {
             let re = rgb.match(/[0-9]{0,3}/g);//利用正则表达式去掉多余的部分，将rgb中的数字提取
             let bgColor = "#"; let num= ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
