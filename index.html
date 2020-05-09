@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGO颜色</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        div#imgs{width: 320px;background: #ff99f9;border: 1px solid #999;}
+        div#imgs>img{display: block;width: 320px;height: 320px;}
+    </style>
+</head>
+<body>
+    <div id="imgs">
+        <img src="./demo.png" alt="请联系客服">
+    </div>
+    <input type="color" name="color" id="color" onchange="rangeColor()"/><br>
+    <label for="rangeR">R（红）：</label><input oninput="rangeColors()" type="range" name="rangeR" id="rangeR" max="255"/><br>
+    <label for="rangeG">G（绿）：</label><input oninput="rangeColors()"  type="range" name="rangeG" id="rangeG" max="255"/><br>
+    <label for="rangeB">B（蓝）：</label><input oninput="rangeColors()"  type="range" name="rangeB" id="rangeB" max="255"/><br>
+
+    <script>
+        let image = document.getElementById('imgs');
+        function rangeColors(){
+            let rangeR = document.getElementById('rangeR');
+            let rangeG = document.getElementById('rangeG');
+            let rangeB = document.getElementById('rangeB');
+            image.style.backgroundColor = 'rgb('+rangeR.value+','+rangeG.value+','+rangeB.value+')';
+        }
+        function rangeColor(){
+            let color = document.getElementById('color');
+            image.style.backgroundColor = color.value;
+        }
+    </script>
+</body>
+</html>
