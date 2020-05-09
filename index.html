@@ -7,12 +7,14 @@
     <style>
         *{margin: 0;padding: 0;}
         div#imgs{width: 320px;background: #ff99f9;border: 1px solid #999;}
+        div#imgs>img.images{width: 90px;height: 90px;border-radius: 50%;position: absolute;top: 68px;left: 83px;}
         div#imgs>img{display: block;width: 320px;height: 320px;}
     </style>
 </head>
 <body>
     <div id="imgs">
-        <img src="./demo.png" alt="请联系客服">
+        <img src="./demo.png" alt="请联系客服" />
+        <img src="./touxiang.jpg" alt="" class="images"/>
     </div>
     <input type="color" name="color" id="color" onchange="rangeColor()" value="#ff99f9"/>颜色：<span id="colorText">#ff99f9</span><br>
     <label for="rangeR">R（红）：</label><input oninput="rangeColors()"  value="255" type="range" name="rangeR" id="rangeR" max="255"/><br>
