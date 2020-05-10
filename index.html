@@ -17,6 +17,7 @@
         <img src="./demo.png" alt="请联系客服" />
         <img src="./touxiang0.jpg" alt="" id="images"/>
     </div>
+    <p>当前第<span id="nowImg">1</span>张 / 共14张</p>
     <p onclick="changTouXiang()">更改头像</p>
     <input type="color" name="color" id="color" onchange="rangeColor()" value="#ff99f9"/>
     颜色：<span id="colorText">#ff99f9</span><br>
@@ -45,6 +46,7 @@
         function changTouXiang(){
             images.src = 'touxiang'+next+'.jpg'
             next ++;
+            document.getElementById('nowImg').innerHTML = next;
             if (next >= total){next = 0}
         }
         function rangeColors(rgb) {
