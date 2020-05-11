@@ -15,7 +15,7 @@
 <body>
     <div id="imgs">
         <img src="./demo.png" alt="请联系客服" />
-        <img src="./touxiang0.jpg" alt="" id="images"/>
+        <img src="./images/touxiang0.jpg" alt="" id="images"/>
     </div>
     <p>当前第<span id="nowImg">1</span>张 / 共14张</p>
     <p onclick="changTouXiang()">更改头像</p>
@@ -44,7 +44,7 @@
         let total = 14;
         let next = 1;
         function changTouXiang(){
-            images.src = 'touxiang'+next+'.jpg'
+            images.src = './images/touxiang'+next+'.jpg'
             next ++;
             document.getElementById('nowImg').innerHTML = next;
             if (next >= total){next = 0}
