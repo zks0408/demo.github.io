@@ -6,8 +6,15 @@
     <title>LOGO颜色</title>
     <style>
         *{margin: 0;padding: 0;}
-        div#imgs{width: 320px;background: #ff99f9;border: 1px solid #999;}
+        @font-face{
+             font-family:'小豆岛黑糖简';
+             src:url('./fonts/小豆岛黑糖简.ttf');
+        }
+        div#imgs{width: 320px;background: #ff99f9;border: 1px solid #999;position: relative;}
         div#imgs>img#images{width: 90px;height: 90px;border-radius: 50%;position: absolute;top: 68px;left: 83px;}
+        div#imgs>p#userName{font-family:'小豆岛黑糖简';font-size: 32px;font-weight: bolder;position: absolute;right: 0;top: 55%;writing-mode:vertical-lr;letter-spacing:10px;}
+        p#changImg{padding: 2px 0;border: 1px solid #666;width: 100px;text-align: center;background: skyblue;}
+        input#changText{padding: 2px 4px;}
         div#imgs>img{display: block;width: 320px;height: 320px;}
         #numB,#numG,#numR{width: 60px;height: 32px;}
     </style>
@@ -16,9 +23,11 @@
     <div id="imgs">
         <img src="./demo.png" alt="请联系客服" />
         <img src="./images/touxiang0.jpg" alt="" id="images"/>
+        <p id="userName">羊弟弟</p>
     </div>
     <p>当前第<span id="nowImg">1</span>张 / 共14张</p>
-    <p onclick="changTouXiang()">更改头像</p>
+    <p onclick="changTouXiang()" id="changImg">更改头像</p>
+    <label for="changText">输入更换名称 </label><input type="text" id="changText" value="羊弟弟" onchange="changeText()" /><br/>
     <input type="color" name="color" id="color" onchange="rangeColor()" value="#ff99f9"/>
     颜色：<span id="colorText">#ff99f9</span><br>
     <label for="rangeR">R（红）：</label>
@@ -34,6 +43,8 @@
         let image = document.getElementById('imgs');
         let images = document.getElementById('images');
         let color = document.getElementById('color');
+        let userName = document.getElementById('userName');
+        let changText = document.getElementById('changText');
         let rangeR = document.getElementById('rangeR');
         let rangeG = document.getElementById('rangeG');
         let rangeB = document.getElementById('rangeB');
@@ -41,8 +52,14 @@
         let numG = document.getElementById('numG');
         let numB = document.getElementById('numB');
         let colorText = document.getElementById('colorText');
+        numR.value = 255;numG.value = 153;numB.value = 249;
+        rangeR.value = 255;rangeG.value = 153;rangeB.value = 249;
+        color.value = '#ff99f9';changText.value = '羊弟弟'
         let total = 14;
         let next = 1;
+        function changeText(){
+            userName.innerHTML = changText.value;
+        }
         function changTouXiang(){
             images.src = './images/touxiang'+next+'.jpg'
             next ++;
