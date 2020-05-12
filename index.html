@@ -53,13 +53,6 @@
     <input type="number" oninput="rangeTextXY()" name="numTextY" id="numTextY" max="320" min="0"><br>
     <label for="changText">输入更换名称 </label>
     <input type="text" id="changText" value="羊弟弟" onchange="changeText()" />
-    <select name="" id="changFamily" onchange="changeFamily()">
-        <option value="古印">古印</option>
-        <option value="草书">草书</option>
-        <option value="毛笔">毛笔</option>
-        <option value="可爱">可爱</option>
-        <option value="黑糖">黑糖</option>
-    </select><br/>
     <label for="rangeTextR">R（红）：</label>
     <input oninput="rangeTextRGB()" type="range" name="rangeTextR" id="rangeTextR" max="255"/>
     <input type="number" oninput="rangeTextNumber()" name="numTextR" id="numTextR" max="255" min="0"><br>
@@ -81,10 +74,6 @@
     <label for="rangeB">B（蓝）：</label>
     <input oninput="rangeRGB()" type="range" name="rangeB" id="rangeB" max="255"/>
     <input type="number" oninput="rangeNumber()" name="numB" id="numB" max="255" min="0"><br>
-    <div style="font-family: '可爱';"></div>
-    <div style="font-family: '毛笔';"></div>
-    <div style="font-family: '草书';"></div>
-    <div style="font-family: '黑糖';"></div>
     <script>
         let image = document.getElementById('imgs');
         let images = document.getElementById('images');
@@ -118,9 +107,6 @@
         let total = 14;
         let next = 1;
         var imgs = new Array()
-        function changeFamily() {
-            userName.style.fontFamily = changFamily.value;
-        }
         function changeText(){
             userName.innerHTML = changText.value;
         }
