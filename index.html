@@ -7,16 +7,32 @@
     <style>
         *{margin: 0;padding: 0;}
         @font-face{
-             font-family:'小豆岛黑糖简';
+             font-family:'古印';
+             src:url('./fonts/白舟篆古印教汉.ttf');
+        }
+        @font-face{
+             font-family:'可爱';
+             src:url('./fonts/可爱.ttf');
+        }
+        @font-face{
+             font-family:'黑糖';
              src:url('./fonts/小豆岛黑糖简.ttf');
         }
+        @font-face{
+             font-family:'毛笔';
+             src:url('./fonts/毛笔.ttf');
+        }
+        @font-face{
+             font-family:'草书';
+             src:url('./fonts/草书.ttf');
+        }
+        h2{width: 320px;text-align: center;padding: 6px;}
         div#imgs{width: 320px;background: #ff99f9;border: 1px solid #999;position: relative;}
         div#imgs>img#images{width: 90px;height: 90px;border-radius: 50%;position: absolute;top: 68px;left: 83px;}
-        div#imgs>p#userName{font-family:'小豆岛黑糖简';font-size: 32px;font-weight: bolder;position: absolute;right: 0;top: 55%;writing-mode:vertical-lr;letter-spacing:10px;}
+        div#imgs>p#userName{font-family:'古印';font-size: 32px;font-weight: bolder;position: absolute;left: 266px;top: 168px;writing-mode:vertical-lr;letter-spacing:10px;}
         p#changImg{padding: 2px 0;border: 1px solid #666;width: 100px;text-align: center;background: skyblue;}
-        input#changText{padding: 2px 4px;}
+        input#changText{padding: 2px 4px;width: 100px;}
         div#imgs>img{display: block;width: 320px;height: 320px;}
-        #numB,#numG,#numR{width: 60px;height: 32px;}
     </style>
 </head>
 <body>
@@ -25,26 +41,63 @@
         <img src="./images/touxiang0.jpg" alt="" id="images"/>
         <p id="userName">羊弟弟</p>
     </div>
+    <h2>图片显示</h2>
     <p>当前第<span id="nowImg">1</span>张 / 共14张</p>
-    <p onclick="changTouXiang()" id="changImg">更改头像</p>
-    <label for="changText">输入更换名称 </label><input type="text" id="changText" value="羊弟弟" onchange="changeText()" /><br/>
+    <p onclick="changTouXiang()" id="changImg">更改头像</p>   
+    <h2>名称显示</h2>
+    <label for="positionX">X轴方向：</label>
+    <input oninput="positionXY()" type="range" name="positionX" id="positionX" max="320"/>
+    <input type="number" oninput="rangeTextXY()" name="numTextX" id="numTextX" max="320" min="0"><br>
+    <label for="positionY">Y轴方向：</label>
+    <input oninput="positionXY()" type="range" name="positionY" id="positionY" max="320"/>
+    <input type="number" oninput="rangeTextXY()" name="numTextY" id="numTextY" max="320" min="0"><br>
+    <label for="changText">输入更换名称 </label>
+    <input type="text" id="changText" value="羊弟弟" onchange="changeText()" />
+    <select name="" id="changFamily" onchange="changeFamily()">
+        <option value="古印">古印</option>
+        <option value="草书">草书</option>
+        <option value="毛笔">毛笔</option>
+        <option value="可爱">可爱</option>
+        <option value="黑糖">黑糖</option>
+    </select><br/>
+    <label for="rangeTextR">R（红）：</label>
+    <input oninput="rangeTextRGB()" type="range" name="rangeTextR" id="rangeTextR" max="255"/>
+    <input type="number" oninput="rangeTextNumber()" name="numTextR" id="numTextR" max="255" min="0"><br>
+    <label for="rangeTextG">G（绿）：</label>
+    <input oninput="rangeTextRGB()" type="range" name="rangeTextG" id="rangeTextG" max="255"/>
+    <input type="number" oninput="rangeTextNumber()" name="numTextG" id="numTextG" max="255" min="0"><br>
+    <label for="rangeTextB">B（蓝）：</label>
+    <input oninput="rangeTextRGB()" type="range" name="rangeTextB" id="rangeTextB" max="255"/>
+    <input type="number" oninput="rangeTextNumber()" name="numTextB" id="numTextB" max="255" min="0"><br>
+    <h2>背景颜色</h2>
     <input type="color" name="color" id="color" onchange="rangeColor()" value="#ff99f9"/>
     颜色：<span id="colorText">#ff99f9</span><br>
     <label for="rangeR">R（红）：</label>
-    <input oninput="rangeRGB()" value="255" type="range" name="rangeR" id="rangeR" max="255"/>
-    <input type="number" oninput="rangeNumber()" name="numR" id="numR" value="255" max="255" min="0"><br>
+    <input oninput="rangeRGB()" type="range" name="rangeR" id="rangeR" max="255"/>
+    <input type="number" oninput="rangeNumber()" name="numR" id="numR" max="255" min="0"><br>
     <label for="rangeG">G（绿）：</label>
-    <input oninput="rangeRGB()" value="153" type="range" name="rangeG" id="rangeG" max="255"/>
-    <input type="number" oninput="rangeNumber()" name="numG" id="numG" value="153" max="255" min="0"><br>
+    <input oninput="rangeRGB()" type="range" name="rangeG" id="rangeG" max="255"/>
+    <input type="number" oninput="rangeNumber()" name="numG" id="numG" max="255" min="0"><br>
     <label for="rangeB">B（蓝）：</label>
-    <input oninput="rangeRGB()" value="249" type="range" name="rangeB" id="rangeB" max="255"/>
-    <input type="number" oninput="rangeNumber()" name="numB" id="numB" value="249" max="255" min="0"><br>
+    <input oninput="rangeRGB()" type="range" name="rangeB" id="rangeB" max="255"/>
+    <input type="number" oninput="rangeNumber()" name="numB" id="numB" max="255" min="0"><br>
     <script>
         let image = document.getElementById('imgs');
         let images = document.getElementById('images');
-        let color = document.getElementById('color');
+        let color = document.getElementById('color');    
+        let positionX = document.getElementById('positionX');
+        let positionY = document.getElementById('positionY');
+        let numTextX = document.getElementById('numTextX');
+        let numTextY = document.getElementById('numTextY');
         let userName = document.getElementById('userName');
         let changText = document.getElementById('changText');
+        let changFamily = document.getElementById('changFamily');
+        let rangeTextR = document.getElementById('rangeTextR');
+        let rangeTextG = document.getElementById('rangeTextG');
+        let rangeTextB = document.getElementById('rangeTextB');
+        let numTextR = document.getElementById('numTextR');
+        let numTextG = document.getElementById('numTextG');
+        let numTextB = document.getElementById('numTextB');
         let rangeR = document.getElementById('rangeR');
         let rangeG = document.getElementById('rangeG');
         let rangeB = document.getElementById('rangeB');
@@ -52,11 +105,17 @@
         let numG = document.getElementById('numG');
         let numB = document.getElementById('numB');
         let colorText = document.getElementById('colorText');
+        positionX.value = 266;positionY.value = 168;numTextX.value = 266;numTextY.value = 168;
+        numTextR.value = 0;numTextG.value = 0;numTextB.value = 0;
+        rangeTextR.value = 0;rangeTextG.value = 0;rangeTextB.value = 0;
         numR.value = 255;numG.value = 153;numB.value = 249;
         rangeR.value = 255;rangeG.value = 153;rangeB.value = 249;
         color.value = '#ff99f9';changText.value = '羊弟弟'
         let total = 14;
         let next = 1;
+        function changeFamily() {
+            userName.style.fontFamily = changFamily.value;
+        }
         function changeText(){
             userName.innerHTML = changText.value;
         }
@@ -85,6 +144,32 @@
             color.value = bgColor;
             colorText.innerHTML = bgColor;
             image.style.backgroundColor = rgb;
+        }
+        function rangeTextXY(){
+            userName.style.top = numTextY.value + 'px';
+            userName.style.left = numTextX.value + 'px';
+            positionX.value = numTextX.value;
+            positionY.value = numTextY.value;
+        }
+        function positionXY() {
+            userName.style.top = positionY.value + 'px';
+            userName.style.left = positionX.value + 'px';
+            numTextX.value = positionX.value;
+            numTextY.value = positionY.value;
+        }
+        function rangeTextRGB(){
+            let rgb = 'rgb('+rangeTextR.value+','+rangeTextG.value+','+rangeTextB.value+')';
+            numTextR.value = rangeTextR.value;
+            numTextG.value = rangeTextG.value;
+            numTextB.value = rangeTextB.value;
+            userName.style.color = rgb;
+        }
+        function rangeTextNumber() {
+            let rgb = 'rgb('+numTextR.value+','+numTextG.value+','+numTextB.value+')';
+            rangeTextR.value = numTextR.value;
+            rangeTextG.value = numTextG.value;
+            rangeTextB.value = numTextB.value;
+            userName.style.color = rgb;
         }
         function rangeRGB(){
             let rgb = 'rgb('+rangeR.value+','+rangeG.value+','+rangeB.value+')';
