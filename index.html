@@ -81,6 +81,10 @@
     <label for="rangeB">B（蓝）：</label>
     <input oninput="rangeRGB()" type="range" name="rangeB" id="rangeB" max="255"/>
     <input type="number" oninput="rangeNumber()" name="numB" id="numB" max="255" min="0"><br>
+    <div style="font-family: '可爱';"></div>
+    <div style="font-family: '毛笔';"></div>
+    <div style="font-family: '草书';"></div>
+    <div style="font-family: '黑糖';"></div>
     <script>
         let image = document.getElementById('imgs');
         let images = document.getElementById('images');
@@ -114,27 +118,6 @@
         let total = 14;
         let next = 1;
         var imgs = new Array()
-		function preload(){
-			for (i = 0; i < preload.arguments.length; i++) {
-				imgs[i] = new Image()
-				imgs[i].src = preload.arguments[i]
-			}
-		}
-		preload(
-			"./images/touxiang1.jpg",
-			"./images/touxiang2.jpg",
-			"./images/touxiang3.jpg",
-			"./images/touxiang4.jpg",
-			"./images/touxiang5.jpg",
-			"./images/touxiang6.jpg",
-			"./images/touxiang7.jpg",
-			"./images/touxiang8.jpg",
-			"./images/touxiang9.jpg",
-			"./images/touxiang10.jpg",
-			"./images/touxiang11.jpg",
-			"./images/touxiang12.jpg",
-			"./images/touxiang13.jpg",
-		)
         function changeFamily() {
             userName.style.fontFamily = changFamily.value;
         }
@@ -216,6 +199,27 @@
             numR.value = colorR;numG.value = colorG;numB.value = colorB;
             colorText.innerHTML = color.value;
         }
+        function preload(){
+			for (i = 0; i < preload.arguments.length; i++) {
+				imgs[i] = new Image()
+				imgs[i].src = preload.arguments[i]
+			}
+		}
+		preload(
+		    "./images/touxiang1.jpg",
+			"./images/touxiang2.jpg",
+			"./images/touxiang3.jpg",
+			"./images/touxiang4.jpg",
+			"./images/touxiang5.jpg",
+			"./images/touxiang6.jpg",
+			"./images/touxiang7.jpg",
+			"./images/touxiang8.jpg",
+			"./images/touxiang9.jpg",
+			"./images/touxiang10.jpg",
+			"./images/touxiang11.jpg",
+			"./images/touxiang12.jpg",
+			"./images/touxiang13.jpg",
+		)
     </script>
 </body>
 </html>
