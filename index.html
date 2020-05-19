@@ -6,14 +6,10 @@
     <title>LOGO颜色</title>
     <style>
         *{margin: 0;padding: 0;}
-        @font-face{
-             font-family:'华文行楷';
-             src:url('./fonts/华文行楷.ttf');
-        }
         h2{width: 320px;text-align: center;padding: 6px;}
         div#imgs{width: 320px;background: #ff99f9;border: 1px solid #999;position: relative;}
         div#imgs>img#images{width: 90px;height: 90px;border-radius: 50%;position: absolute;top: 68px;left: 83px;}
-        div#imgs>p#userName{font-family:'华文行楷';font-size: 32px;font-weight: bolder;position: absolute;left: 266px;top: 168px;writing-mode:vertical-lr;letter-spacing:10px;}
+        div#imgs>p#userName{font-family:"华文行楷";font-size: 32px;font-weight: bolder;position: absolute;left: 266px;top: 168px;writing-mode:vertical-lr;letter-spacing:10px;}
         p#changImg{padding: 2px 0;border: 1px solid #666;width: 100px;text-align: center;background: skyblue;}
         input#changText{padding: 2px 4px;width: 100px;}
         div#imgs>img{display: block;width: 320px;height: 320px;}
@@ -36,7 +32,14 @@
     <input oninput="positionXY()" type="range" name="positionY" id="positionY" max="320"/>
     <input type="number" oninput="rangeTextXY()" name="numTextY" id="numTextY" max="320" min="0"><br>
     <label for="changText">输入更换名称 </label>
-    <input type="text" id="changText" value="羊弟弟" onchange="changeText()" /><br>
+    <input type="text" id="changText" value="羊弟弟" onchange="changeText()" />
+    <select name="" id="changFamily" onchange="changeFamily()">
+        <option value="华文行楷">华文行楷</option>
+        <option value="方正舒体">方正舒体</option>
+        <option value="华文新魏">华文新魏</option>
+        <option value="微软雅黑">微软雅黑</option>
+        <option value="华文隶书">华文隶书</option>
+    </select><br>
     <label for="rangeTextR">R（红）：</label>
     <input oninput="rangeTextRGB()" type="range" name="rangeTextR" id="rangeTextR" max="255"/>
     <input type="number" oninput="rangeTextNumber()" name="numTextR" id="numTextR" max="255" min="0"><br>
@@ -91,6 +94,9 @@
         let total = 14;
         let next = 1;
         var imgs = new Array()
+        function changeFamily(){
+            userName.style.fontFamily = changFamily.value;
+        }
         function changeText(){
             userName.innerHTML = changText.value;
         }
